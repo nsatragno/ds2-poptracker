@@ -152,6 +152,7 @@ end
 
 --called when a location gets cleared
 function onLocation(location_id, location_name)
+    print("Checking location", location_id, location_name)
     local location_array = LOCATION_MAPPING[location_id]
     if not location_array or not location_array[1] then
         print(string.format("onLocation: could not find location mapping for id %s", location_id))
@@ -160,7 +161,7 @@ function onLocation(location_id, location_name)
 
     for _, location in pairs(location_array) do
         local location_obj = Tracker:FindObjectForCode(location)
-        -- print(location, location_obj)
+        print("Setting location for:", location, location_obj)
         if location_obj then
             if location:sub(1, 1) == "@" then
                 location_obj.AvailableChestCount = location_obj.AvailableChestCount - 1
